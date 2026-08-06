@@ -55,7 +55,21 @@ Base image: Alpine + bash, git, curl, less, ripgrep, Node 26, npm, pnpm, Python 
 
 ## Adding a language runtime
 
-The agent will hit `php: not found` (or `go`, `ruby`, …). Fix it in the image, once:
+**Detect what the project actually uses — never assume a language.** Check the manifest in the project root:
+
+| Found in project | Runtime | Alpine packages |
+|---|---|---|
+| `package.json`, `pnpm-lock.yaml` | Node | already in the base image |
+| `requirements.txt`, `pyproject.toml` | Python | already in the base image |
+| `composer.json` | PHP | see the full example below |
+| `go.mod` | Go | `go` |
+| `Gemfile` | Ruby | `ruby ruby-dev ruby-bundler` |
+| `pom.xml` | Java | `openjdk21 maven` |
+| `build.gradle`, `build.gradle.kts` | Java | `openjdk21 gradle` |
+| `Cargo.toml` | Rust | `rust cargo` |
+| `*.csproj`, `*.sln` | .NET | `dotnet9-sdk` |
+
+A polyglot repo needs every runtime its tests touch. Add `mysql-client`/`postgresql-client` only if the project shells out to `mysql`/`psql`. Then build the image once:
 
 ```bash
 sandbox dockerfile > ~/.sandbox/Dockerfile        # start from the default
