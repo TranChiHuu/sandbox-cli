@@ -1,0 +1,46 @@
+name: Bug report
+description: Something doesn't work
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: And what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Command
+      description: The smallest command that reproduces it, with `--debug` output.
+      placeholder: |
+        $ sandbox --debug claude
+        level=DEBUG msg=runtime ...
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: sandbox version
+      placeholder: output of `sandbox version`
+    validations:
+      required: true
+
+  - type: input
+    id: env
+    attributes:
+      label: OS and Docker engine
+      placeholder: macOS 15.1, OrbStack 1.9 / Ubuntu 24.04, Docker Desktop 27
+    validations:
+      required: true
+
+  - type: textarea
+    id: custom
+    attributes:
+      label: Custom image
+      description: If you have a `~/.sandbox/Dockerfile` or `config.json`, paste it — most "command not found" reports come from there.
+      render: dockerfile

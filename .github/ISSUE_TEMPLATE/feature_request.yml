@@ -1,0 +1,31 @@
+name: Feature request
+description: Propose a change in behaviour
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check **Not implemented** in the README first — network isolation, credential
+        proxying, approval prompts, policy engines and alternative backends are left
+        out on purpose. Arguing one of those in is fine, it just needs the argument.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What doesn't work today
+      description: The situation you hit, not the solution you have in mind.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you'd like instead
+    validations:
+      required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: What you do now
+      description: Editing `~/.sandbox/Dockerfile`, a wrapper script, plain `docker run` — anything that already gets you by.

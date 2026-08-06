@@ -150,3 +150,13 @@ make image     # rebuild the sandbox image
 Network isolation, credential/SSH/git proxying, approval prompts, audit logs, policy
 engine, and Firecracker or Kubernetes backends. There is one backend and no interface
 in front of it; the interface can appear when the second backend does.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Security issues go through a
+[private advisory](https://github.com/TranChiHuu/sandbox-cli/security/advisories/new),
+not a public issue — see [SECURITY.md](SECURITY.md) for what counts as in scope.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
