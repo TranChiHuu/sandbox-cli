@@ -1,4 +1,4 @@
-# sandbox
+# Sandbox cli
 
 Run AI coding agents in a container that can see your project and nothing else.
 
@@ -9,6 +9,8 @@ directory are not there to be read — not blocked by a prompt or a policy the a
 could talk its way past, simply absent from the filesystem.
 
 The agent doesn't need to know or cooperate. It just sees a normal Linux box.
+
+![Claude Code running inside sandbox, asked to find SSH keys and AWS credentials, reporting that none exist on the machine](docs/img/agent-in-sandbox.png)
 
 ## Install
 
