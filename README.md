@@ -111,6 +111,19 @@ their default; a malformed file warns and falls back rather than killing the ses
 
 `log_level` is one of `debug`, `info`, `warn`, `error`. `--debug` overrides it.
 
+## Agent skill
+
+`skills/sandbox-cli/SKILL.md` teaches an agent to install and drive `sandbox` itself — so
+Claude Code can put its own commands in the container instead of running them on your
+machine. Install it once:
+
+```bash
+ln -s "$PWD/skills/sandbox-cli" ~/.claude/skills/sandbox-cli   # Claude Code
+```
+
+Other runtimes read `~/.agents/skills/`. A copy works as well as a symlink; the symlink
+just keeps it current when you `git pull`.
+
 ## Layout
 
 ```
