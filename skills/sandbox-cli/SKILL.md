@@ -21,11 +21,16 @@ Not for: network isolation (network is unrestricted), or hiding secrets that liv
 command -v sandbox && sandbox version    # already installed?
 
 git clone https://github.com/TranChiHuu/sandbox-cli.git ~/.local/src/sandbox-cli
-make -C ~/.local/src/sandbox-cli install     # go install → $(go env GOPATH)/bin
-export PATH="$(go env GOPATH)/bin:$PATH"     # add to shell rc if missing
+
+# no Go on the host — builds in a container, installs to ~/.local/bin
+PREFIX=~/.local make -C ~/.local/src/sandbox-cli install-docker
+export PATH="$HOME/.local/bin:$PATH"         # add to shell rc if missing
+
+# with Go 1.23+ on the host, this is faster
+make -C ~/.local/src/sandbox-cli install     # → $(go env GOPATH)/bin
 ```
 
-Requires Go 1.23+ and Docker (Docker Desktop, OrbStack, Rancher Desktop). If the engine is down, `sandbox` starts it on macOS; on Linux it prints the `systemctl` command.
+Requires Docker (Docker Desktop, OrbStack, Rancher Desktop); Go is optional. If the engine is down, `sandbox` starts it on macOS; on Linux it prints the `systemctl` command.
 
 ## Use
 

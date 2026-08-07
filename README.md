@@ -14,11 +14,21 @@ The agent doesn't need to know or cooperate. It just sees a normal Linux box.
 
 ## Install
 
+Docker is the only hard requirement (Docker Desktop, OrbStack, and Rancher Desktop
+all work) — the binary can be built inside a container:
+
+```bash
+make install-docker    # builds in golang:1.23-alpine → /usr/local/bin/sandbox
+```
+
+`PREFIX=~/.local make install-docker` puts it somewhere that doesn't need sudo. The
+Go module cache lives in `~/.cache/sandbox-cli-go`, so rebuilds are fast.
+
+With a Go 1.23+ toolchain on the host, the native path is quicker:
+
 ```bash
 make install    # or: make build  →  ./bin/sandbox
 ```
-
-Requires Go 1.23+ and Docker (Docker Desktop, OrbStack, and Rancher Desktop all work).
 
 ## Use
 
@@ -142,7 +152,8 @@ which is most of what the SDK would be for.
 
 ```bash
 make test
-make image     # rebuild the sandbox image
+make test-docker    # same tests, no host Go needed
+make image          # rebuild the sandbox image
 ```
 
 ## Not implemented

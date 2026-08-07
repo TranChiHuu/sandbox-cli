@@ -2,11 +2,12 @@
 
 ## Setup
 
-Go 1.23+ and Docker. Then:
+Docker. A host Go 1.23+ toolchain is optional — the `-docker` targets build and test
+in `golang:1.23-alpine` instead.
 
 ```bash
-make build      # ./bin/sandbox
-make test
+make build      # ./bin/sandbox      (make build-docker without host Go)
+make test       #                    (make test-docker without host Go)
 make image      # rebuild the sandbox image
 ```
 
